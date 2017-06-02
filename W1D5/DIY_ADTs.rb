@@ -1,3 +1,36 @@
+class Map
+  attr_reader :map
+
+  def initialize(map = [])
+    @map = map
+  end
+
+  def assign(key, value)
+    if lookup(key) != nil
+      remove(key)
+    end
+    @map << [key, value]
+  end
+
+  def lookup(key)
+    @map.each do |k|
+      return k if k[0] == key
+    end
+    nil
+  end
+
+  def remove(key)
+    @map.each_with_index do |k,i|
+      @map.delete(@map[i]) if k[0] == key
+    end
+  end
+
+  def show
+    @map.dup
+  end
+end
+
+
 class Queue
   attr_reader :queue
 
